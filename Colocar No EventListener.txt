@@ -1,0 +1,94 @@
+if (KeyBoardInput.transformei && tenhoDesenho == true) { // TENHO TRANSFORMAÇÕES LOGO, TENHO QUE MOSTRAR 2 CURVAS UMA ANTES E A OUTRA DEPOIS
+
+            if (percorrerTrans - 1 >= 1) { // SEGUNDA TRANSFORMAÇÃO
+                gl.glPushMatrix();
+                for (int i = 0; i < percorrerTrans - 1; i++) { // PEGAR TODAS AS TRANSFORMAÇÕES ANTERIORES
+
+                    if (transformacoes[i][0] == 1) { // TRANSLAÇÃO
+
+                        gl.glTranslated(transformacoes[i][1], transformacoes[i][2], 1);
+
+                    } else if (transformacoes[i][0] == 2) { // ESCALONAMENTO
+
+                        gl.glScaled(transformacoes[i][1], transformacoes[i][2], 1);
+
+                    } else { // ROTAÇÃO
+
+                        gl.glRotated(transformacoes[i][1], 0, 0, 1);
+                    }
+                }
+
+                gl.glViewport(0, 0, Bezier3D_Curve.getWindowWidth() / 2, Bezier3D_Curve.getWindowHeight()); // TELA DA ESQUERDA ANTES DA TRANSFORMAÇÃO
+                gl.glColor3d(1, 0, 0);         // COR DO TEXTO
+                gl.glRasterPos2d(25, 30); // POSIÇÃO X E Y QUE O TEXTO TERÁ
+                glut.glutBitmapString(5, "Antes da Transformação " + percorrerTrans); //PLOTAR O DESENHO ONDE 9 É A FONTE E "Antes da transformação é o texto"    
+                surperficieAntes.Draw(100); // DESENHA A CURVA    
+
+                gl.glViewport(Bezier3D_Curve.getWindowWidth() / 2, 0, Bezier3D_Curve.getWindowWidth() / 2, Bezier3D_Curve.getWindowHeight()); // DA DIREITA
+                gl.glColor3d(1, 0, 0);
+                gl.glRasterPos2d(25, 30);
+                glut.glutBitmapString(5, poly);
+
+                if (transformacoes[percorrerTrans - 1][0] == 1) { // TRANSLAÇÃO
+
+                    gl.glTranslated(transformacoes[percorrerTrans - 1][1], transformacoes[percorrerTrans - 1][2], 1);
+
+                } else if (transformacoes[percorrerTrans - 1][0] == 2) { // ESCALONAMENTO
+
+                    gl.glScaled(transformacoes[percorrerTrans - 1][1], transformacoes[percorrerTrans - 1][2], 1);
+
+                } else { // ROTAÇÃO
+
+                    gl.glRotated(transformacoes[percorrerTrans - 1][1], 0, 0, 1);
+                }
+
+                surperficieDepois.Draw(100);
+                gl.glLoadIdentity();
+                gl.glPopMatrix();
+
+            } else { // PRIMEIRA TRANSFORMAÇÃO
+
+                gl.glPushMatrix();
+                gl.glViewport(0, 0, Bezier3D_Curve.getWindowWidth() / 2, Bezier3D_Curve.getWindowHeight() - 70); // TELA DA ESQUERDA
+                gl.glColor3d(1, 0, 0);         // COR DO TEXTO
+                gl.glRasterPos2d(25, 30); // POSIÇÃO X E Y QUE O TEXTO TERÁ
+                glut.glutBitmapString(5, "Antes da Transformação "); //PLOTAR O DESENHO ONDE 9 É A FONTE E "Antes da transformação é o texto"    
+                surperficieAntes.Draw(100); // DESENHA A CURVA    
+
+                gl.glViewport(Bezier3D_Curve.getWindowWidth() / 2, 0, Bezier3D_Curve.getWindowWidth() / 2, Bezier3D_Curve.getWindowHeight() - 70); // DA DIREITA
+                gl.glColor3d(1, 0, 0);
+                gl.glRasterPos2d(25, 30);
+                glut.glutBitmapString(5, poly);
+
+                if (transformacoes[percorrerTrans - 1][0] == 1) { // TRANSLAÇÃO
+
+                    gl.glTranslated(transformacoes[percorrerTrans - 1][1], transformacoes[percorrerTrans - 1][2], 1);
+
+                } else if (transformacoes[percorrerTrans - 1][0] == 2) { // ESCALONAMENTO
+
+                    gl.glScaled(transformacoes[percorrerTrans - 1][1], transformacoes[percorrerTrans - 1][2], 1);
+
+                } else { // ROTAÇÃO
+
+                    gl.glRotated(transformacoes[percorrerTrans - 1][1], 0, 0, 1);
+                }
+                surperficieDepois.Draw(100);
+                gl.glLoadIdentity();
+                gl.glPopMatrix();
+
+            }
+
+        } else if (KeyBoardInput.transformei == false && tenhoDesenho == true) { // VOLTAR PARA UMA CURVA 
+
+            if (criei2Telas && KeyBoardInput.transformei == false) {
+
+                gl.glLoadIdentity();
+                gl.glPopMatrix();
+                criei2Telas = false;
+            } else {
+                criei2Telas = true;
+                gl.glPushMatrix();
+            }
+            surperficieDepois.Draw(100); // QUANTOS PONTO TEM EM CADA CURVA + DESENHAR A CURVA
+            pontosDeControle(gl);
+        }
