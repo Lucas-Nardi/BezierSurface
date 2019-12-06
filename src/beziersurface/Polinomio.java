@@ -17,22 +17,21 @@ public class Polinomio {
         double somaExterna3 = 0;
         
         int n = p.length-1;        
-        int m = p.length-1;         
+        int m = p.length-1;
+        
                                                 // (1-t)^(n-i) * (t)^i * x
-        for(int i=0; i < p.length; i++){            
+        for(int i=0; i <= n; i++){            
             
-            for(int j=0; j < p.length; j++){
+            for(int j=0; j <= m; j++){
                 
                 double B1 = valorDeB(i,n);
                 double B2 = valorDeB(j,m);
-                                                  // PARTE  B(S) de i até n                          x    PARTE B(t) de j até m
-                somaInterna1 = somaInterna1 + ( ( ( Math.pow((1-s), (n - i)) * (Math.pow(s, i) * B1) )  * ( Math.pow((1-t), (m - j)) * (Math.pow(t, j) * B2) ) ) * p[i][j].getX());
                 
-                System.out.println(somaInterna1);
+                somaInterna1 = somaInterna1 + ( Math.pow(s, i) * Math.pow(1-s, n-i) *  B1 )  * (Math.pow(t, j) * Math.pow(1-t, m-j) * B2) * p[i][j].getX();
+              
+                somaInterna2 = somaInterna2 + ( Math.pow(s, i) * Math.pow(1-s, n-i) *  B1 )  * (Math.pow(t, j) * Math.pow(1-t, m-j) * B2) * p[i][j].getY();
                 
-                somaInterna2 = somaInterna2 + ( ( ( Math.pow((1-s), (n - i)) * (Math.pow(s, i) * B1) )  * ( Math.pow((1-t), (m - j)) * (Math.pow(t, j) * B2) ) ) * p[i][j].getY());
-                
-                somaInterna3 = somaInterna3 + ( ( ( Math.pow((1-s), (n - i)) * (Math.pow(s, i) * B1) )  * ( Math.pow((1-t), (m - j)) * (Math.pow(t, j) * B2) ) ) * p[i][j].getZ());
+                somaInterna3 = somaInterna3 + ( Math.pow(s, i) * Math.pow(1-s, n-i) *  B1 )  * (Math.pow(t, j) * Math.pow(1-t, m-j) * B2) * p[i][j].getZ();
             }
             
             somaExterna1 = somaExterna1 + somaInterna1;

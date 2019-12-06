@@ -77,6 +77,7 @@ public class Main {
                 }else if (readLine.charAt(0) == 't') { // PEGAR A TRANSFORMAÇÃO TRANSLAÇÃO 
 
                     coordenadas = readLine.split("\t");
+                    
                     transformacoes[qtdTransformacoes][0] =  1; // IDENTIFICA QUE É UMA TRANSFORMACAO DE TRANSLAÇÃO
                     transformacoes[qtdTransformacoes][1] = Double.parseDouble(coordenadas[1]); // TRANSLAÇÃO EM TORNO DO EIXO X
                     transformacoes[qtdTransformacoes][2] = Double.parseDouble(coordenadas[2]); // TRANSLAÇÃO EM TORNO DO EIXO Y
@@ -89,17 +90,29 @@ public class Main {
                     transformacoes[qtdTransformacoes][0] =  2; // IDENTIFICA QUE É UMA TRANSFORMACAO DE ESCALONAMENTO
                     transformacoes[qtdTransformacoes][1] = Double.parseDouble(coordenadas[1]); // ESCALONAMENTO EM TORNO DO EIXO X
                     transformacoes[qtdTransformacoes][2] = Double.parseDouble(coordenadas[2]); // ESCALONAMENTO EM TORNO DO EIXO Y
-                    transformacoes[qtdTransformacoes][3] = Double.parseDouble(coordenadas[3]); // TRANSLAÇÃO EM TORNO DO EIXO Z
+                    transformacoes[qtdTransformacoes][3] = Double.parseDouble(coordenadas[3]); // ESCALONAMENTO EM TORNO DO EIXO Z
                     qtdTransformacoes++;                
                 
                 } else if (readLine.charAt(0) == 'r') { // PEGAR A TRANSFORMAÇÃO DE ROTAÇÃO
 
                     coordenadas = readLine.split("\t");
                     transformacoes[qtdTransformacoes][0] =  3; // IDENTIFICA QUE É UMA TRANSFORMACAO DE ROTACAO
-                    transformacoes[qtdTransformacoes][1] = Double.parseDouble(coordenadas[1]); // ROTAÇÃO NO EIXO X
-                    transformacoes[qtdTransformacoes][2] = Double.parseDouble(coordenadas[2]); // ROTAÇÃO NO EIXO Y
-                    transformacoes[qtdTransformacoes][3] = Double.parseDouble(coordenadas[3]); // ROTAÇÃO NO EIXO Z
-                    transformacoes[qtdTransformacoes][4] = Double.parseDouble(coordenadas[4]); // PONTO 4
+                    
+                    if(coordenadas[1].equalsIgnoreCase("x")){
+                        transformacoes[qtdTransformacoes][1] = Double.parseDouble(coordenadas[2]); // ROTAÇÃO EM TORNO DO EIXO X
+                        transformacoes[qtdTransformacoes][2] = 0 ; // TRANSLAÇÃO EM TORNO DO EIXO Y
+                        transformacoes[qtdTransformacoes][3] = 0 ; // TRANSLAÇÃO EM TORNO DO EIXO Z
+                    
+                    }else if(coordenadas[1].equalsIgnoreCase("y")){
+                        transformacoes[qtdTransformacoes][1] = 0; // TRANSLAÇÃO EM TORNO DO EIXO X
+                        transformacoes[qtdTransformacoes][2] = Double.parseDouble(coordenadas[2]) ; // ROTAÇÃO EM TORNO DO EIXO Y
+                        transformacoes[qtdTransformacoes][3] = 0 ; // TRANSLAÇÃO EM TORNO DO EIXO Z
+                    
+                    }else{
+                        transformacoes[qtdTransformacoes][1] = 0; // TRANSLAÇÃO EM TORNO DO EIXO X
+                        transformacoes[qtdTransformacoes][2] = 0 ; // TRANSLAÇÃO EM TORNO DO EIXO Y
+                        transformacoes[qtdTransformacoes][3] = Double.parseDouble(coordenadas[2]) ; // ROTAÇÃO EM TORNO DO EIXO Z
+                    }
                     qtdTransformacoes++;
                 }                
             }

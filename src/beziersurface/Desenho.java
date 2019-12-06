@@ -32,30 +32,30 @@ public class Desenho {
         
         double s, t;
         double px, py, pz;
-        int total = (int)qtdPontos + 1;
-        pontos = new Ponto[total][total];
+        int total = (int)qtdPontos + 1; 
+        pontos = new Ponto[total][total]; 
         // CRIAR OS PONTOS E COLOCA ELES EM UM ARRAYLIST DE PONTOS
         for (int i = 0 ; i <= qtdPontos; i++) {
 
             s = i / qtdPontos;
             
-            for (int k = 0; k <= qtdPontos; k++) {
+            for (int j = 0; j <= qtdPontos; j++) {
 
-                t = k / qtdPontos;
-                poly.pegarPonto(ctrlP, s, t); // PEGAR O A POSICAO X e Y DO PONTO 1;
+                t = j / qtdPontos;
+                poly.pegarPonto(ctrlP, t, s); // PEGAR O A POSICAO X e Y DO PONTO 1;
                 px = poly.getResultX();
                 py = poly.getResultY();
                 pz = poly.getResultZ();                
                 Ponto p = new Ponto(px,py,pz);
-                if(i < total && k < total){
-                    pontos[i][k] = p;
+                if(i < pontos.length ){
+                    pontos[i][j] = p;
                 }
             }
         }
         gl.glColor3d(red, green, blue);                    // QUAL É A COR DA CURVA
         // PEGAR TODOS OS PONTOS E PLOTAR
         
-        for (int i = 0; i < pontos.length-1; i++) { // PERCORRER A MATRIZ DOS PONTOS LINHA A LINHA
+        for (int i = 0; i < pontos.length; i++) { // PERCORRER A MATRIZ DOS PONTOS LINHA A LINHA
             
         
             for (int j = 0; j < pontos.length-1; j++) {
@@ -67,7 +67,7 @@ public class Desenho {
                 gl.glFlush();
             }
         }
-        for (int j = 0; j < pontos.length-1; j++) { // PERCORRER A MATRIZ DOS PONTOS COLUNA A COLUNA
+        for (int j = 0; j < pontos.length; j++) { // PERCORRER A MATRIZ DOS PONTOS COLUNA A COLUNA
          
             for (int i = 0; i < pontos.length-1; i++) {
          
@@ -78,6 +78,18 @@ public class Desenho {
                 gl.glFlush();
             }
         }
+        
+        
+//        for (int j = 0; j < pontos.length; j++) { // PERCORRER A MATRIZ DOS PONTOS COLUNA A COLUNA
+//         
+//            System.out.println("LINHA: " + (j+1));
+//            
+//            for (int i = 0; i < pontos.length; i++) {
+//         
+//                System.out.print(pontos[j][i].getX() + " ");
+//            }
+//            System.out.println();
+//        }
     }
 
     public void setRed(double red) {
