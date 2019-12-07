@@ -79,17 +79,6 @@ public class Desenho {
             }
         }
         
-        
-//        for (int j = 0; j < pontos.length; j++) { // PERCORRER A MATRIZ DOS PONTOS COLUNA A COLUNA
-//         
-//            System.out.println("LINHA: " + (j+1));
-//            
-//            for (int i = 0; i < pontos.length; i++) {
-//         
-//                System.out.print(pontos[j][i].getX() + " ");
-//            }
-//            System.out.println();
-//        }
     }
 
     public void setRed(double red) {

@@ -116,6 +116,7 @@ public class Main {
                     qtdTransformacoes++;
                 }                
             }
+            
             tamanho = pontos.length;
             bufferR.close();
             fileR.close();

@@ -10,11 +10,8 @@ public class Polinomio {
     public void pegarPonto(Ponto[][] p, double s,double t) {
         
         double somaInterna1 = 0;
-        double somaExterna1 = 0;
         double somaInterna2 = 0;
-        double somaExterna2 = 0;
         double somaInterna3 = 0;
-        double somaExterna3 = 0;
         
         int n = p.length-1;        
         int m = p.length-1;
@@ -33,15 +30,10 @@ public class Polinomio {
                 
                 somaInterna3 = somaInterna3 + ( Math.pow(s, i) * Math.pow(1-s, n-i) *  B1 )  * (Math.pow(t, j) * Math.pow(1-t, m-j) * B2) * p[i][j].getZ();
             }
-            
-            somaExterna1 = somaExterna1 + somaInterna1;
-            somaExterna2 = somaExterna2 + somaInterna2;
-            somaExterna3 = somaExterna3 + somaInterna3;
-            
         }
-        resultX = somaExterna1;
-        resultY = somaExterna2;
-        resultZ = somaExterna3;
+        resultX = somaInterna1;
+        resultY = somaInterna2;
+        resultZ = somaInterna3;
     }
 
     
