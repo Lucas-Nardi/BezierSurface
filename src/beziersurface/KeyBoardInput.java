@@ -43,7 +43,6 @@ public class KeyBoardInput implements KeyListener {
         bufferW.newLine();
         bufferW.write("g\t" + (Main.tamanho - 1));
         bufferW.newLine();
-        bufferW.newLine();
         bufferW.write("#--------------------------------------------------------------------------");
         bufferW.newLine();
         bufferW.write("# Lista de vértices:");
@@ -77,35 +76,35 @@ public class KeyBoardInput implements KeyListener {
 
             parametro1 = Double.toString(transformacoes[i][1]); // PEGA O VALORE DE X NAS TRANSFORMAÇÕES
             parametro2 = Double.toString(transformacoes[i][2]); // PEGA O VALORE DE Y NAS TRANSFORMAÇÕES
-            if (transformacoes[i][0] != 3) {
+            if (transformacoes[i][0] == 1 || transformacoes[i][0] == 2 ) {
                 parametro3 = Double.toString(transformacoes[i][3]); // PEGA O VALORE DE Z NAS TRANSFORMAÇÕES
             }
-        }
-        if (transformacoes[i][0] == 1) { // TRANSLAÇÃO
+            if (transformacoes[i][0] == 1) { // TRANSLAÇÃO
 
-            transformacao = "t\t" + parametro1 + "\t" + parametro2 + "\t" + parametro3 + "\t#Translação";
+                transformacao = "t\t" + parametro1 + "\t" + parametro2 + "\t" + parametro3 + "\t#Translação";
 
-        } else if (transformacoes[i][0] == 2) { // ESCALONAMENTO
+            } else if (transformacoes[i][0] == 2) { // ESCALONAMENTO
 
-            transformacao = "s\t" + parametro1 + "\t" + parametro2 + "\t" + parametro3 + "\t#Escalonamento";
+                transformacao = "s\t" + parametro1 + "\t" + parametro2 + "\t" + parametro3 + "\t#Escalonamento";
 
-        } else if (transformacoes[i][0] == 3) { // ROTAÇÃO 
+            } else if (transformacoes[i][0] == 3) { // ROTAÇÃO 
 
-            if (transformacoes[percorrerTrans][1] != 0) { // NO EIXO X
+                if (transformacoes[i][1] != 0) { // NO EIXO X
 
-                transformacao = "r\t" + "x" + "\t" + parametro2 + "\t#Rotação de " + parametro2 + " graus";
+                    transformacao = "r\t" + "x" + "\t" + parametro2 + "\t#Rotação de " + parametro2 + " graus";
 
-            } else if (transformacoes[percorrerTrans][2] != 0) { // NO IXO Y
+                } else if (transformacoes[i][2] != 0) { // NO IXO Y
 
-                transformacao = "r\t" + "y" + "\t" + parametro2 + "\t#Rotação de " + parametro2 + " graus";
+                    transformacao = "r\t" + "y" + "\t" + parametro2 + "\t#Rotação de " + parametro2 + " graus";
 
-            } else {                                               // NO EIXO Z
-                transformacao = "r\t" + "z" + "\t" + parametro2 + "\t#Rotação de " + parametro2 + " graus";
+                } else {                                               // NO EIXO Z
+                    transformacao = "r\t" + "z" + "\t" + parametro2 + "\t#Rotação de " + parametro2 + " graus";
+                }
             }
+            bufferW.write(transformacao);
+            bufferW.newLine();
+            bufferW.flush();
         }
-        bufferW.write(transformacao);
-        bufferW.newLine();
-        bufferW.flush();
     }
 
     @Override
