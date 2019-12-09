@@ -35,9 +35,7 @@ public class Polinomio {
         resultY = somaInterna2;
         resultZ = somaInterna3;
     }
-
-    
-    
+   
     private double fatorial (double numero){
         
         double resultado = 1;

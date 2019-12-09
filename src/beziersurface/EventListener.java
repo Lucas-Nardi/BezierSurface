@@ -267,7 +267,6 @@ public class EventListener implements GLEventListener {
         }
         //System.out.println(rotatex);
         //rotatex -= 1;
-
     }
 
     @Override
@@ -308,5 +307,4 @@ public class EventListener implements GLEventListener {
         gl.glMatrixMode(GL2.GL_MODELVIEW);
         gl.glLoadIdentity();
     }
-
 }
